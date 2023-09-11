@@ -1,6 +1,5 @@
 from django.db import models
-from user.models import Etudiant, Enseignant
-    
+from user.models import Etudiant 
 
 class Video(models.Model):
     title = models.CharField(max_length=100)

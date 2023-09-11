@@ -1,0 +1,19 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" type="text/css" >
+    <title>Open Pratice</title>
+</head>
+<body>
+    <h1>Open Pratice</h1>
+    {% block content %}{% endblock %}
+
+    {% if user.is_authenticated %}
+        <p>Vous êtes connecté en tant que {{ request.user }}. <a href="{% url 'logout' %}">Se déconnecter</a></p>
+    {% endif %}
+   
+</body>
+</html>

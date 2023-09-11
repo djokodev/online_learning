@@ -18,10 +18,16 @@ from django.contrib import admin
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
+import user.views
+import course.views
 
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path("",  user.views.login_page, name="login"),
+    path("logout/",  user.views.logout_user, name="logout"),
+    path("home/", course.views.home, name="home"),
+    path('signup/', user.views.signup_page, name='signup'),
 ]
 if settings.DEBUG:
     urlpatterns += static\

@@ -1,10 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-from course.models import Course
 
 class CustomUser(AbstractUser):
     # ici nous implementons les champs commun a tous les utilisateurs
-    username = models.CharField(max_length=30, unique=True)
+    username = models.CharField(max_length=60, unique=True)
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
     email = models.EmailField(unique=True)
@@ -16,6 +15,18 @@ class CustomUser(AbstractUser):
         un chemin relatif par rapport au répertoire de stockage des fichiers de médias de votre projet Django."""
     
     country_residence = models.CharField(max_length=100)
+    
+    ENSEIGNANT = "ENSEIGNANT"
+    ETUDIANT = "ETUDIANT"
+    
+    ROLE_CHOICES = (
+        (ENSEIGNANT, "Enseignant"),
+        (ETUDIANT, "Etudiant"),
+    )
+    
+    status = models.CharField(max_length=30, choices=ROLE_CHOICES, verbose_name='Status')
+    """permet de vérifier la valeur du champ  status sans écrire la valeur en dur. 
+        Par exemple, si user.status == user.CREATOR"""
     
     class Meta:
         verbose_name = "Utilisateur"
